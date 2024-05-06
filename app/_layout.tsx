@@ -3,7 +3,6 @@ import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
-import { PaperProvider } from 'react-native-paper';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -39,11 +38,7 @@ export default function RootLayout() {
     return null;
   }
 
-  return (
-    <PaperProvider>
-      <RootLayoutNav />
-    </PaperProvider>
-  );
+  return <RootLayoutNav />;
 }
 
 function RootLayoutNav() {
