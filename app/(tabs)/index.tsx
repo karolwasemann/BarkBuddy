@@ -1,17 +1,9 @@
 import { StyleSheet, View, Text } from 'react-native';
-import { Button } from 'react-native-paper';
 
 export default function TabOneScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tab One</Text>
-      <Button
-        icon="close"
-        mode="contained"
-        onPress={() => console.log('Pressed')}
-      >
-        Press me
-      </Button>
     </View>
   );
 }
