@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
+import { StyleSheet, View, Text, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { GET_AUTH } from '../../firebaseConfig';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { useNavigation } from 'expo-router';
+import { Button } from 'tamagui';
 
 export default function TabOneScreen() {
   const [email, setEmail] = useState('');
@@ -56,8 +56,26 @@ export default function TabOneScreen() {
         onChangeText={(text) => setPassword(text)}
         secureTextEntry
       />
-      <Button title="Log In" onPress={login} disabled={isLoading} />
-      <Button title="Craete Account" onPress={signup} disabled={isLoading} />
+      {/* <Button title="Log In" onPress={login} disabled={isLoading} />
+      <Button title="Craete Account" onPress={signup} disabled={isLoading} /> */}
+      <Button
+        size={'$5'}
+        gap="$3"
+        onPress={login}
+        disabled={isLoading}
+        theme={'red'}
+      >
+        Login
+      </Button>
+      <Button
+        size={'$5'}
+        gap="$3"
+        onPress={signup}
+        disabled={isLoading}
+        theme={'red'}
+      >
+        Creat Account
+      </Button>
     </SafeAreaView>
   );
 }

@@ -3,7 +3,18 @@ import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import '@tamagui/core/reset.css';
+import { TamaguiProvider, createTamagui } from '@tamagui/core';
+import { config } from '@tamagui/config/v3';
 
+// you usually export this from a tamagui.config.ts file
+const tamaguiConfig = createTamagui(config);
+
+// make TypeScript type everything based on your config
+type Conf = typeof tamaguiConfig;
+declare module '@tamagui/core' {
+  interface TamaguiCustomConfig extends Conf {}
+}
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -38,7 +49,11 @@ export default function RootLayout() {
     return null;
   }
 
-  return <RootLayoutNav />;
+  return (
+    <TamaguiProvider config={tamaguiConfig}>
+      <RootLayoutNav />
+    </TamaguiProvider>
+  );
 }
 
 function RootLayoutNav() {
