@@ -1,28 +1,39 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { H1, H5, YStack, Button } from 'tamagui';
-import { StyleSheet } from 'react-native';
-import { Link, useRouter } from 'expo-router';
+import { StyleSheet, View } from 'react-native';
+import { useRouter } from 'expo-router';
+import { Heading, Text, Button, ButtonText } from '@gluestack-ui/themed';
 
 export default function home() {
   const router = useRouter();
 
   return (
     <SafeAreaView style={styles.container}>
-      <YStack alignItems="center" gap="$4">
-        <H1 color="dark">Bark Buddy</H1>
-        <H5 color="dark">Find a Buddy and bark together</H5>
+      <View>
+        <Heading color="dark">Bark Buddy</Heading>
+        <Text color="dark">Find a Buddy and bark together</Text>
         <Button
-          size="$5"
-          width={200}
-          backgroundColor={'$purple9Light'}
           onPress={() => router.push('/login')}
           style={{ marginTop: 40 }}
+          size="md"
+          variant="solid"
+          action="primary"
+          isDisabled={false}
+          isFocusVisible={false}
         >
-          Login
+          <ButtonText>Login</ButtonText>
         </Button>
-        <Link href={'/signup'}>Create Account</Link>
-      </YStack>
+        <Button
+          onPress={() => router.push('/signup')}
+          size="md"
+          variant="link"
+          action="primary"
+          isDisabled={false}
+          isFocusVisible={false}
+        >
+          <ButtonText>Create Account</ButtonText>
+        </Button>
+      </View>
     </SafeAreaView>
   );
 }

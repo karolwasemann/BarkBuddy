@@ -6,16 +6,6 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
-import {
-  XStack,
-  YStack,
-  ZStack,
-  Button,
-  Form,
-  H4,
-  Spinner,
-  Input,
-} from 'tamagui';
 
 export default function TabOneScreen() {
   const [email, setEmail] = useState('');
@@ -60,7 +50,7 @@ export default function TabOneScreen() {
   }, [status]);
   return (
     <SafeAreaView style={styles.container}>
-      <YStack gap="$3" width={350} alignContent="center" alignItems="stretch">
+      {/* <YStack gap="$3" width={350} alignContent="center" alignItems="stretch">
         <Form
           alignItems="center"
           gap="$2"
@@ -110,7 +100,7 @@ export default function TabOneScreen() {
             </Button>
           </Form.Trigger>
         </Form>
-      </YStack>
+      </YStack> */}
     </SafeAreaView>
   );
 }
