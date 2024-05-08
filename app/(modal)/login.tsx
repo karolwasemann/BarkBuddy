@@ -1,21 +1,9 @@
 import { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, TextInput } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { GET_AUTH } from '../../firebaseConfig';
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from 'firebase/auth';
-import {
-  XStack,
-  YStack,
-  ZStack,
-  Button,
-  Form,
-  H4,
-  Spinner,
-  Input,
-} from 'tamagui';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { YStack, Button, Form, Spinner, Input, Label } from 'tamagui';
 
 export default function TabOneScreen() {
   const [email, setEmail] = useState('');
@@ -38,18 +26,6 @@ export default function TabOneScreen() {
     }
   };
 
-  const signup = async () => {
-    setIsLoading(true);
-    try {
-      await createUserWithEmailAndPassword(GET_AUTH, email, password);
-      alert('Signed up');
-    } catch (error) {
-      alert('Failed to sign up');
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
   useEffect(() => {
     if (status === 'submitting') {
       const timer = setTimeout(() => setStatus('off'), 2000);
@@ -66,9 +42,14 @@ export default function TabOneScreen() {
           gap="$2"
           onSubmit={() => setStatus('submitting')}
         >
+          <Label width={90} htmlFor="email">
+            email
+          </Label>
+
           <Input
             value={email}
-            style={styles.input}
+            width={300}
+            size="$5"
             placeholder="Email"
             autoCapitalize="none"
             onChangeText={(text) => setEmail(text)}
@@ -77,7 +58,8 @@ export default function TabOneScreen() {
           />
           <Input
             value={password}
-            style={styles.input}
+            width={300}
+            size="$5"
             placeholder="Password"
             autoCapitalize="none"
             onChangeText={(text) => setPassword(text)}
@@ -94,19 +76,9 @@ export default function TabOneScreen() {
               disabled={isLoading}
               backgroundColor={'$purple9Light'}
               icon={status === 'submitting' ? () => <Spinner /> : undefined}
+              style={{ marginTop: 20 }}
             >
               Login
-            </Button>
-          </Form.Trigger>
-          <Form.Trigger asChild disabled={status !== 'off'}>
-            <Button
-              size="$5"
-              width={200}
-              onPress={signup}
-              disabled={isLoading}
-              backgroundColor={'$purple9Light'}
-            >
-              Creat Account
             </Button>
           </Form.Trigger>
         </Form>
@@ -119,7 +91,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 180,
   },
   title: {
     fontSize: 20,

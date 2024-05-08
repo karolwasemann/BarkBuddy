@@ -50,17 +50,28 @@ export default function RootLayout() {
   }
 
   return (
-    <TamaguiProvider config={tamaguiConfig}>
+    <TamaguiProvider config={tamaguiConfig} defaultTheme="dark">
       <RootLayoutNav />
     </TamaguiProvider>
   );
 }
 
+// function RootLayoutNav() {
+//   return (
+//     <Stack>
+//       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+//       <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+//     </Stack>
+//   );
+// }
 function RootLayoutNav() {
   return (
     <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+      <Stack.Screen name="home" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="(modal)"
+        options={{ presentation: 'modal', headerShown: false }}
+      />
     </Stack>
   );
 }
