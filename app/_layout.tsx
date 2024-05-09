@@ -1,16 +1,29 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
-import { GluestackUIProvider, Text, Box } from '@gluestack-ui/themed';
+import {
+  Box,
+  Button,
+  ButtonIcon,
+  ButtonText,
+  CalendarDaysIcon,
+  ChevronsLeftIcon,
+  GluestackUIProvider,
+  Icon,
+} from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/config'; // Optional if you want to use default theme
+import { AuthProvider, useAuth } from '../provider/AuthContext';
+import Profile from './profile';
+import Page from './page';
+import Signup from './signup';
+import Login from './login';
 
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
 } from 'expo-router';
-
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
@@ -37,27 +50,51 @@ export default function RootLayout() {
 
   return (
     <GluestackUIProvider config={config}>
-      <RootLayoutNav />
+      <AuthProvider>
+        <RootLayoutNav />
+      </AuthProvider>
     </GluestackUIProvider>
   );
 }
 
-// function RootLayoutNav() {
-//   return (
-//     <Stack>
-//       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-//       <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-//     </Stack>
-//   );
-// }
+const Stack = createNativeStackNavigator();
+
 function RootLayoutNav() {
+  const { currentUser, logout } = useAuth();
+
   return (
-    <Stack>
-      <Stack.Screen name="home" options={{ headerShown: false }} />
-      {/* <Stack.Screen
-        name="modal"
-        options={{ presentation: 'modal', headerShown: false }}
-      /> */}
-    </Stack>
+    <Stack.Navigator>
+      {currentUser ? (
+        <>
+          <Stack.Screen
+            name="profile"
+            component={Profile}
+            options={{
+              headerRight: () => (
+                <Button
+                  size="md"
+                  variant="link"
+                  action="primary"
+                  gap="$1"
+                  justifyContent="center"
+                  onPress={logout}
+                >
+                  <ButtonIcon as={ChevronsLeftIcon} />
+                  <ButtonText>logout</ButtonText>
+                </Button>
+              ),
+            }}
+          />
+        </>
+      ) : (
+        <>
+          <Stack.Screen name="page" component={Page} />
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen name="login" component={Login} />
+            <Stack.Screen name="signup" component={Signup} />
+          </Stack.Group>
+        </>
+      )}
+    </Stack.Navigator>
   );
 }

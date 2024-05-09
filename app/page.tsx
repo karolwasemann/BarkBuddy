@@ -1,19 +1,20 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StyleSheet, View } from 'react-native';
-import { useRouter } from 'expo-router';
 import { Heading, Text, Button, ButtonText } from '@gluestack-ui/themed';
+import { useRouter } from 'expo-router';
 
-export default function home() {
+export default function Page() {
   const router = useRouter();
-
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <Heading color="dark">Bark Buddy</Heading>
-        <Text color="dark">Find a Buddy and bark together</Text>
+        <Heading>Bark Buddy</Heading>
+        <Text>Find a Buddy and bark together</Text>
         <Button
-          onPress={() => router.push('/login')}
+          onPress={() => {
+            router.push('/login');
+          }}
           style={{ marginTop: 40 }}
           size="md"
           variant="solid"

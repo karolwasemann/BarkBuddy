@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import {
   Text,
   FormControl,
@@ -18,9 +15,9 @@ import {
   EyeIcon,
   EyeOffIcon,
 } from '@gluestack-ui/themed';
-import { auth } from '../../firebaseConfig';
+import { auth } from '../firebaseConfig';
 
-export default function TabOneScreen() {
+export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -32,13 +29,13 @@ export default function TabOneScreen() {
     });
   };
 
-  const signup = async () => {
+  const login = async () => {
     setIsLoading(true);
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      alert('Signed up');
+      await signInWithEmailAndPassword(auth, email, password);
+      alert('Logged in');
     } catch (error) {
-      alert('Failed to sign up');
+      alert('Failed to log in');
       console.error(error);
     } finally {
       setIsLoading(false);
@@ -50,9 +47,7 @@ export default function TabOneScreen() {
       <VStack padding={5} marginTop={60}>
         <FormControl>
           <VStack space="xl" alignItems="center">
-            <Heading color="$text900" lineHeight="$md">
-              Create Account
-            </Heading>
+            <Heading lineHeight="$md">Login</Heading>
             <VStack space="xs" width={350}>
               <Text lineHeight="$xs">Email</Text>
               <Input>
@@ -71,15 +66,12 @@ export default function TabOneScreen() {
                   onChangeText={(text) => setPassword(text)}
                 />
                 <InputSlot pr="$3" onPress={handleState}>
-                  <InputIcon
-                    as={showPassword ? EyeIcon : EyeOffIcon}
-                    color="$darkBlue500"
-                  />
+                  <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
                 </InputSlot>
               </Input>
             </VStack>
-            <Button onPress={signup} alignItems="center" isDisabled={isLoading}>
-              <ButtonText color="$white">Signup</ButtonText>
+            <Button onPress={login} alignItems="center" isDisabled={isLoading}>
+              <ButtonText>Login</ButtonText>
             </Button>
           </VStack>
         </FormControl>
