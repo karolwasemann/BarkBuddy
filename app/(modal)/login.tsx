@@ -1,21 +1,38 @@
-import { useEffect, useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { GET_AUTH } from '../../firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  Text,
+  FormControl,
+  Heading,
+  Input,
+  InputField,
+  VStack,
+  InputSlot,
+  Button,
+  ButtonText,
+  InputIcon,
+  EyeIcon,
+  EyeOffIcon,
+} from '@gluestack-ui/themed';
+import { auth } from '../../firebaseConfig';
 
 export default function TabOneScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [status, setStatus] = useState<'off' | 'submitting' | 'submitted'>(
-    'off'
-  );
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleState = () => {
+    setShowPassword((showState) => {
+      return !showState;
+    });
+  };
 
   const login = async () => {
     setIsLoading(true);
     try {
-      await signInWithEmailAndPassword(GET_AUTH, email, password);
+      await signInWithEmailAndPassword(auth, email, password);
       alert('Logged in');
     } catch (error) {
       alert('Failed to log in');
@@ -25,85 +42,45 @@ export default function TabOneScreen() {
     }
   };
 
-  useEffect(() => {
-    if (status === 'submitting') {
-      const timer = setTimeout(() => setStatus('off'), 2000);
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-  }, [status]);
   return (
-    //     <SafeAreaView style={styles.container}>
-    //       <YStack gap="$3" width={350} alignContent="center" alignItems="stretch">
-    //         <Form
-    //           alignItems="center"
-    //           gap="$2"
-    //           onSubmit={() => setStatus('submitting')}
-    //         >
-    //           <Label width={90} htmlFor="email">
-    //             email
-    //           </Label>
-
-    //           <Input
-    //             value={email}
-    //             width={300}
-    //             size="$5"
-    //             placeholder="Email"
-    //             autoCapitalize="none"
-    //             onChangeText={(text) => setEmail(text)}
-    //             backgroundColor={'$purple2Light'}
-    //             color={'black'}
-    //           />
-    //           <Input
-    //             value={password}
-    //             width={300}
-    //             size="$5"
-    //             placeholder="Password"
-    //             autoCapitalize="none"
-    //             onChangeText={(text) => setPassword(text)}
-    //             secureTextEntry
-    //             backgroundColor={'$purple2Light'}
-    //             color={'black'}
-    //           />
-
-    //           <Form.Trigger asChild disabled={status !== 'off'}>
-    //             <Button
-    //               size="$5"
-    //               width={200}
-    //               onPress={login}
-    //               disabled={isLoading}
-    //               backgroundColor={'$purple9Light'}
-    //               icon={status === 'submitting' ? () => <Spinner /> : undefined}
-    //               style={{ marginTop: 20 }}
-    //             >
-    //               Login
-    //             </Button>
-    //           </Form.Trigger>
-    //         </Form>
-    //       </YStack>
-    //     </SafeAreaView>
-    <View>
-      <Text>Login</Text>
-    </View>
+    <SafeAreaView>
+      <VStack padding={5} marginTop={60}>
+        <FormControl>
+          <VStack space="xl" alignItems="center">
+            <Heading color="$text900" lineHeight="$md">
+              Login
+            </Heading>
+            <VStack space="xs" width={350}>
+              <Text lineHeight="$xs">Email</Text>
+              <Input>
+                <InputField
+                  type="text"
+                  onChangeText={(text) => setEmail(text)}
+                  autoCapitalize="none"
+                />
+              </Input>
+            </VStack>
+            <VStack space="xs" width={350}>
+              <Text lineHeight="$xs">Password</Text>
+              <Input>
+                <InputField
+                  type={showPassword ? 'text' : 'password'}
+                  onChangeText={(text) => setPassword(text)}
+                />
+                <InputSlot pr="$3" onPress={handleState}>
+                  <InputIcon
+                    as={showPassword ? EyeIcon : EyeOffIcon}
+                    color="$darkBlue500"
+                  />
+                </InputSlot>
+              </Input>
+            </VStack>
+            <Button onPress={login} alignItems="center" isDisabled={isLoading}>
+              <ButtonText color="$white">Login</ButtonText>
+            </Button>
+          </VStack>
+        </FormControl>
+      </VStack>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    paddingTop: 180,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  input: {
-    height: 40,
-    width: '80%',
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
-});
