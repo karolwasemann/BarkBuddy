@@ -14,7 +14,7 @@ function TabBarIcon(props: {
 export default function TabLayout() {
   return (
     <Tabs>
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="index"
         options={{
           title: 'Tab One',
@@ -40,7 +40,7 @@ export default function TabLayout() {
           title: 'Tab Two',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
-      />
+      /> */}
     </Tabs>
   );
 }
