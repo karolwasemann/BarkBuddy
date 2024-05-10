@@ -15,10 +15,10 @@ import {
 } from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/config'; // Optional if you want to use default theme
 import { AuthProvider, useAuth } from '../provider/AuthContext';
-import Profile from './profile';
 import Page from './page';
 import Signup from './signup';
 import Login from './login';
+import Profile from './profile';
 
 export {
   // Catch any errors thrown by the Layout component.

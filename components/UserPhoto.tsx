@@ -4,33 +4,34 @@ import {
   Avatar,
   AvatarFallbackText,
   AvatarImage,
+  Box,
   Button,
   ButtonText,
   View,
 } from '@gluestack-ui/themed';
-import { useAuth } from '../provider/AuthContext';
 import { useImageUpload } from '../hooks/useImageUpload';
+import { User } from 'firebase/auth';
 type Props = {
+  user: User | null;
   onImageUpdate?: (url: string) => void;
 };
 
-export const UserPhoto: React.FC<Props> = ({ onImageUpdate }) => {
-  const { currentUser } = useAuth();
+export const UserPhoto: React.FC<Props> = ({ user, onImageUpdate }) => {
   const [image, setImage] = useState<string | null>(null);
   const { requestPermissions, pickImage, checkImageUrl } = useImageUpload({
     onUploadSuccess: handleUploadSuccess,
-    currentUser,
+    user,
   });
 
   useEffect(() => {
     requestPermissions();
     checkExistingPhotoUrl();
-  }, [currentUser]);
+  }, [user]);
 
   async function checkExistingPhotoUrl() {
-    if (currentUser?.photoURL) {
-      const isValid = await checkImageUrl(currentUser.photoURL);
-      if (isValid) setImage(currentUser.photoURL);
+    if (user?.photoURL) {
+      const isValid = await checkImageUrl(user.photoURL);
+      if (isValid) setImage(user.photoURL);
     }
   }
 
@@ -41,21 +42,23 @@ export const UserPhoto: React.FC<Props> = ({ onImageUpdate }) => {
 
   return (
     <View>
-      <Avatar size="2xl" borderRadius="$full">
-        {image ? (
-          <AvatarImage source={{ uri: image }} alt="User image" />
-        ) : (
-          <AvatarFallbackText>Sandeep Srivastava</AvatarFallbackText>
-        )}
-      </Avatar>
-      <Button
-        onPress={() => pickImage()}
-        size="md"
-        variant="solid"
-        action="primary"
-      >
-        <ButtonText>Edit image</ButtonText>
-      </Button>
+      <Box>
+        <Avatar size="2xl" borderRadius="$full" mb="$5">
+          {image ? (
+            <AvatarImage source={{ uri: image }} alt="User image" />
+          ) : (
+            <AvatarFallbackText>Sandeep Srivastava</AvatarFallbackText>
+          )}
+        </Avatar>
+        <Button
+          onPress={() => pickImage()}
+          size="md"
+          variant="link"
+          action="primary"
+        >
+          <ButtonText>Edit image</ButtonText>
+        </Button>
+      </Box>
     </View>
   );
 };

@@ -1,0 +1,399 @@
+[
+     {
+       "breed": "Labrador Retriever",
+       "origin": "Canada",
+       "size": "Large",
+       "temperament": ["Friendly", "Outgoing", "Gentle"]
+     },
+     {
+       "breed": "German Shepherd",
+       "origin": "Germany",
+       "size": "Large",
+       "temperament": ["Courageous", "Intelligent", "Loyal"]
+     },
+     {
+       "breed": "Golden Retriever",
+       "origin": "Scotland",
+       "size": "Large",
+       "temperament": ["Intelligent", "Friendly", "Devoted"]
+     },
+     {
+       "breed": "Bulldog",
+       "origin": "England",
+       "size": "Medium",
+       "temperament": ["Docile", "Willful", "Friendly"]
+     },
+     {
+       "breed": "Beagle",
+       "origin": "United Kingdom",
+       "size": "Small to Medium",
+       "temperament": ["Gentle", "Friendly", "Curious"]
+     },
+     {
+       "breed": "Poodle",
+       "origin": "Germany",
+       "size": "Miniature to Large",
+       "temperament": ["Active", "Alert", "Intelligent"]
+     },
+     {
+       "breed": "French Bulldog",
+       "origin": "France",
+       "size": "Small",
+       "temperament": ["Adaptable", "Playful", "Affectionate"]
+     },
+     {
+       "breed": "Dachshund",
+       "origin": "Germany",
+       "size": "Small",
+       "temperament": ["Clever", "Courageous", "Stubborn"]
+     },
+     {
+       "breed": "Boxer",
+       "origin": "Germany",
+       "size": "Medium to Large",
+       "temperament": ["Playful", "Energetic", "Friendly"]
+     },
+     {
+       "breed": "Siberian Husky",
+       "origin": "Russia",
+       "size": "Medium to Large",
+       "temperament": ["Outgoing", "Alert", "Gentle"]
+     },
+     {
+       "breed": "Shih Tzu",
+       "origin": "China",
+       "size": "Small",
+       "temperament": ["Affectionate", "Playful", "Outgoing"]
+     },
+     {
+       "breed": "Rottweiler",
+       "origin": "Germany",
+       "size": "Large",
+       "temperament": ["Loyal", "Confident", "Courageous"]
+     },
+     {
+       "breed": "Pug",
+       "origin": "China",
+       "size": "Small",
+       "temperament": ["Charming", "Mischievous", "Loving"]
+     },
+     {
+       "breed": "Chihuahua",
+       "origin": "Mexico",
+       "size": "Small",
+       "temperament": ["Alert", "Lively", "Devoted"]
+     },
+     {
+       "breed": "Doberman Pinscher",
+       "origin": "Germany",
+       "size": "Large",
+       "temperament": ["Alert", "Fearless", "Loyal"]
+     },
+     {
+       "breed": "Shetland Sheepdog",
+       "origin": "Scotland",
+       "size": "Small to Medium",
+       "temperament": ["Affectionate", "Lively", "Intelligent"]
+     },
+     {
+       "breed": "Great Dane",
+       "origin": "Germany",
+       "size": "Giant",
+       "temperament": ["Friendly", "Gentle", "Calm"]
+     },
+     {
+       "breed": "Yorkshire Terrier",
+       "origin": "United Kingdom",
+       "size": "Small",
+       "temperament": ["Bold", "Intelligent", "Courageous"]
+     },
+     {
+       "breed": "Australian Shepherd",
+       "origin": "United States",
+       "size": "Medium to Large",
+       "temperament": ["Intelligent", "Energetic", "Protective"]
+     },
+     {
+       "breed": "Pembroke Welsh Corgi",
+       "origin": "United Kingdom",
+       "size": "Medium",
+       "temperament": ["Affectionate", "Smart", "Alert"]
+     },
+     {
+       "breed": "Cavalier King Charles Spaniel",
+       "origin": "United Kingdom",
+       "size": "Small to Medium",
+       "temperament": ["Affectionate", "Graceful", "Gentle"]
+     },
+     {
+       "breed": "Basset Hound",
+       "origin": "France",
+       "size": "Medium",
+       "temperament": ["Gentle", "Friendly", "Spirited"]
+     },
+     {
+       "breed": "Bernese Mountain Dog",
+       "origin": "Switzerland",
+       "size": "Large",
+       "temperament": ["Affectionate", "Intelligent", "Gentle"]
+     },
+     {
+       "breed": "Border Collie",
+       "origin": "United Kingdom",
+       "size": "Medium",
+       "temperament": ["Intelligent", "Energetic", "Tenacious"]
+     },
+     {
+       "breed": "Miniature Schnauzer",
+       "origin": "Germany",
+       "size": "Small",
+       "temperament": ["Friendly", "Smart", "Obedient"]
+     },
+     {
+       "breed": "Cocker Spaniel",
+       "origin": "United Kingdom",
+       "size": "Medium",
+       "temperament": ["Gentle", "Smart", "Happy"]
+     },
+     {
+       "breed": "Siberian Husky",
+       "origin": "Russia",
+       "size": "Medium to Large",
+       "temperament": ["Outgoing", "Alert", "Gentle"]
+     },
+     {
+       "breed": "Shih Tzu",
+       "origin": "China",
+       "size": "Small",
+       "temperament": ["Affectionate", "Playful", "Outgoing"]
+     },
+     {
+       "breed": "Rottweiler",
+       "origin": "Germany",
+       "size": "Large",
+       "temperament": ["Loyal", "Confident", "Courageous"]
+     },
+     {
+       "breed": "Pug",
+       "origin": "China",
+       "size": "Small",
+       "temperament": ["Charming", "Mischievous", "Loving"]
+     },
+     {
+       "breed": "Chihuahua",
+       "origin": "Mexico",
+       "size": "Small",
+       "temperament": ["Alert", "Lively", "Devoted"]
+     },
+     {
+       "breed": "Doberman Pinscher",
+       "origin": "Germany",
+       "size": "Large",
+       "temperament": ["Alert", "Fearless", "Loyal"]
+     },
+     {
+       "breed": "Shetland Sheepdog",
+       "origin": "Scotland",
+       "size": "Small to Medium",
+       "temperament": ["Affectionate", "Lively", "Intelligent"]
+     },
+     {
+       "breed": "Great Dane",
+       "origin": "Germany",
+       "size": "Giant",
+       "temperament": ["Friendly", "Gentle", "Calm"]
+     },
+     {
+       "breed": "Yorkshire Terrier",
+       "origin": "United Kingdom",
+       "size": "Small",
+       "temperament": ["Bold", "Intelligent", "Courageous"]
+     },
+     {
+       "breed": "Australian Shepherd",
+       "origin": "United States",
+       "size": "Medium to Large",
+       "temperament": ["Intelligent", "Energetic", "Protective"]
+     },
+     {
+       "breed": "Pembroke Welsh Corgi",
+       "origin": "United Kingdom",
+       "size": "Medium",
+       "temperament": ["Affectionate", "Smart", "Alert"]
+     },
+     {
+       "breed": "Cavalier King Charles Spaniel",
+       "origin": "United Kingdom",
+       "size": "Small to Medium",
+       "temperament": ["Affectionate", "Graceful", "Gentle"]
+     },
+     {
+       "breed": "Basset Hound",
+       "origin": "France",
+       "size": "Medium",
+       "temperament": ["Gentle", "Friendly", "Spirited"]
+     },
+     {
+       "breed": "Bernese Mountain Dog",
+       "origin": "Switzerland",
+       "size": "Large",
+       "temperament": ["Affectionate", "Intelligent", "Gentle"]
+     },
+     {
+       "breed": "Border Collie",
+       "origin": "United Kingdom",
+       "size": "Medium",
+       "temperament": ["Intelligent", "Energetic", "Tenacious"]
+     },
+     {
+       "breed": "Miniature Schnauzer",
+       "origin": "Germany",
+       "size": "Small",
+       "temperament": ["Friendly", "Smart", "Obedient"]
+     },
+     {
+       "breed": "Cocker Spaniel",
+       "origin": "United Kingdom",
+       "size": "Medium",
+       "temperament": ["Gentle", "Smart", "Happy"]
+     },
+     {
+       "breed": "Pomeranian",
+       "origin": "Germany",
+       "size": "Toy",
+       "temperament": ["Extroverted", "Friendly", "Playful"]
+     },
+     {
+       "breed": "Shiba Inu",
+       "origin": "Japan",
+       "size": "Medium",
+       "temperament": ["Alert", "Charming", "Fearless"]
+     },
+     {
+       "breed": "Boston Terrier",
+       "origin": "United States",
+       "size": "Small",
+       "temperament": ["Friendly", "Intelligent", "Lively"]
+     },
+     {
+       "breed": "Siberian Husky",
+       "origin": "Russia",
+       "size": "Medium to Large",
+       "temperament": ["Outgoing", "Alert", "Gentle"]
+     },
+     {
+       "breed": "Shih Tzu",
+       "origin": "China",
+       "size": "Small",
+       "temperament": ["Affectionate", "Playful", "Outgoing"]
+     },
+     {
+       "breed": "Rottweiler",
+       "origin": "Germany",
+       "size": "Large",
+       "temperament": ["Loyal", "Confident", "Courageous"]
+     },
+     {
+       "breed": "Pug",
+       "origin": "China",
+       "size": "Small",
+       "temperament": ["Charming", "Mischievous", "Loving"]
+     },
+     {
+       "breed": "Chihuahua",
+       "origin": "Mexico",
+       "size": "Small",
+       "temperament": ["Alert", "Lively", "Devoted"]
+     },
+     {
+       "breed": "Doberman Pinscher",
+       "origin": "Germany",
+       "size": "Large",
+       "temperament": ["Alert", "Fearless", "Loyal"]
+     },
+     {
+       "breed": "Shetland Sheepdog",
+       "origin": "Scotland",
+       "size": "Small to Medium",
+       "temperament": ["Affectionate", "Lively", "Intelligent"]
+     },
+     {
+       "breed": "Great Dane",
+       "origin": "Germany",
+       "size": "Giant",
+       "temperament": ["Friendly", "Gentle", "Calm"]
+     },
+     {
+       "breed": "Yorkshire Terrier",
+       "origin": "United Kingdom",
+       "size": "Small",
+       "temperament": ["Bold", "Intelligent", "Courageous"]
+     },
+     {
+       "breed": "Australian Shepherd",
+       "origin": "United States",
+       "size": "Medium to Large",
+       "temperament": ["Intelligent", "Energetic", "Protective"]
+     },
+     {
+       "breed": "Pembroke Welsh Corgi",
+       "origin": "United Kingdom",
+       "size": "Medium",
+       "temperament": ["Affectionate", "Smart", "Alert"]
+     },
+     {
+       "breed": "Cavalier King Charles Spaniel",
+       "origin": "United Kingdom",
+       "size": "Small to Medium",
+       "temperament": ["Affectionate", "Graceful", "Gentle"]
+     },
+     {
+       "breed": "Basset Hound",
+       "origin": "France",
+       "size": "Medium",
+       "temperament": ["Gentle", "Friendly", "Spirited"]
+     },
+     {
+       "breed": "Bernese Mountain Dog",
+       "origin": "Switzerland",
+       "size": "Large",
+       "temperament": ["Affectionate", "Intelligent", "Gentle"]
+     },
+     {
+       "breed": "Border Collie",
+       "origin": "United Kingdom",
+       "size": "Medium",
+       "temperament": ["Intelligent", "Energetic", "Tenacious"]
+     },
+     {
+       "breed": "Miniature Schnauzer",
+       "origin": "Germany",
+       "size": "Small",
+       "temperament": ["Friendly", "Smart", "Obedient"]
+     },
+     {
+       "breed": "Cocker Spaniel",
+       "origin": "United Kingdom",
+       "size": "Medium",
+       "temperament": ["Gentle", "Smart", "Happy"]
+     },
+     {
+       "breed": "Pomeranian",
+       "origin": "Germany",
+       "size": "Toy",
+       "temperament": ["Extroverted", "Friendly", "Playful"]
+     },
+     {
+       "breed": "Shiba Inu",
+       "origin": "Japan",
+       "size": "Medium",
+       "temperament": ["Alert", "Charming", "Fearless"]
+     },
+     {
+       "breed": "Boston Terrier",
+       "origin": "United States",
+       "size": "Small",
+       "temperament": ["Friendly", "Intelligent", "Lively"]
+     }
+   ]
+   

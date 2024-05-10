@@ -9,10 +9,10 @@ import { resizeImage } from '../util/resizeImage';
 
 type UseImageUploadProps = {
   onUploadSuccess: (url: string) => void;
-  currentUser: User | null;
+  user: User | null;
 };
 
-export function useImageUpload({ onUploadSuccess, currentUser }: UseImageUploadProps) {
+export function useImageUpload({ onUploadSuccess, user }: UseImageUploadProps) {
   const requestPermissions = async () => {
     if (Platform.OS !== 'web') {
       const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -53,17 +53,17 @@ export function useImageUpload({ onUploadSuccess, currentUser }: UseImageUploadP
   };
 
   const uploadImage = async (uri: string) => {
-    if (!currentUser) {
+    if (!user) {
       Alert.alert('Authentication error', 'User not authenticated');
       return;
     }
 
     try {
       const blob = await uriToBlob(uri);
-      const storageRef = ref(storage, `profileImages/${currentUser.uid}.jpg`);
+      const storageRef = ref(storage, `profileImages/${user.uid}.jpg`);
       const snapshot = await uploadBytes(storageRef, blob);
       const downloadURL = await getDownloadURL(snapshot.ref);
-      await updateProfile(currentUser, { photoURL: downloadURL });
+      await updateProfile(user, { photoURL: downloadURL });
       onUploadSuccess(downloadURL);
     } catch (error: any) {
       console.error('Upload failed', error);
