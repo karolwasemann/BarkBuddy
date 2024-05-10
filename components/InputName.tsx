@@ -6,18 +6,17 @@ import {
   Input,
   InputField,
 } from '@gluestack-ui/themed';
-import { User } from 'firebase/auth';
 type InputeNameProps = {
-  user: User | null;
+  userName: string;
   setDisplayName: (text: string) => void;
 };
-const InputName = ({ user, setDisplayName }: InputeNameProps) => {
+const InputName = ({ userName, setDisplayName }: InputeNameProps) => {
   return (
     <>
       <Input>
         <InputField
           placeholder="Your funny nickname"
-          defaultValue={user?.displayName || ''}
+          defaultValue={userName}
           onChangeText={(text) => setDisplayName(text)}
         />
       </Input>

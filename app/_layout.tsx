@@ -19,6 +19,7 @@ import Page from './page';
 import Signup from './signup';
 import Login from './login';
 import Profile from './profile';
+import Tabs from './(tabs)/_layout';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -67,9 +68,10 @@ function RootLayoutNav() {
       {currentUser ? (
         <>
           <Stack.Screen
-            name="profile"
-            component={Profile}
+            name="(tabs)"
+            component={Tabs}
             options={{
+              // headerShown: false,
               headerRight: () => (
                 <Button
                   size="md"

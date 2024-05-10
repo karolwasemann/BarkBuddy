@@ -1,7 +1,7 @@
 import { get, ref, set } from 'firebase/database';
 import { db } from '../firebaseConfig';
 export type UserProfile = {
-  displayName?: string;
+  name?: string;
   birthday?: Date;
   city?: string;
   desc?: string;
@@ -24,10 +24,9 @@ export const getUserData = async (userId:string):Promise<UserProfile> => {
           
           if (snapshot.exists()) {
             const userData = snapshot.val();
-            console.log('User data:', userData);
             return userData;
           } else {
-            console.log('No data available for the user');
+            console.error('No data available for the user');
             return null;
           }
         } catch (error) {
@@ -35,3 +34,26 @@ export const getUserData = async (userId:string):Promise<UserProfile> => {
           return null;
         }
 }
+
+export const getAllUsersData = async (): Promise<UserProfile[]> => {
+  try {
+    const usersRef = ref(db, 'users');
+    const snapshot = await get(usersRef);
+
+    if (snapshot.exists()) {
+      const userDataArray: UserProfile[] = [];
+      snapshot.forEach((childSnapshot) => {
+        const userData = childSnapshot.val();
+        userDataArray.push(userData);
+      });
+      console.log('All users data:', userDataArray);
+      return userDataArray;
+    } else {
+      console.log('No data available for any users');
+      return [];
+    }
+  } catch (error) {
+    console.error('Error getting all users data:', error);
+    return [];
+  }
+};

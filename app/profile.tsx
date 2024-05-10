@@ -42,7 +42,6 @@ const Profile: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getUserData(currentUser.uid);
-      console.log('🚀 ~ fetchData ~ data:', data);
       setUserProfile(data);
     };
 
@@ -50,7 +49,13 @@ const Profile: React.FC = () => {
   }, [currentUser]);
 
   const submitHandle = async () => {
-    await updateUserData(currentUser.uid, userProfile);
+    const user = {
+      name: currentUser.displayName || '',
+      email: currentUser.email,
+      photoURL: currentUser.photoURL,
+      ...userProfile,
+    };
+    await updateUserData(currentUser.uid, user);
   };
 
   return (
@@ -60,9 +65,9 @@ const Profile: React.FC = () => {
           <UserPhoto user={currentUser} />
           <VStack alignItems="center">
             <InputName
-              user={currentUser}
+              userName={userProfile?.name || ''}
               setDisplayName={(text: string) =>
-                setUserProfile({ ...userProfile, displayName: text })
+                setUserProfile({ ...userProfile, name: text })
               }
             />
           </VStack>
