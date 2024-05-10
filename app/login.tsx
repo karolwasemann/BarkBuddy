@@ -33,7 +33,6 @@ export default function Login() {
     setIsLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert('Logged in');
     } catch (error) {
       alert('Failed to log in');
       console.error(error);

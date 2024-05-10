@@ -36,7 +36,6 @@ export default function Signup() {
     setIsLoading(true);
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      alert('Signed up');
     } catch (error) {
       alert('Failed to sign up');
       console.error(error);
