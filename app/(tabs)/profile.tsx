@@ -24,12 +24,12 @@ import {
   TextareaInput,
   VStack,
 } from '@gluestack-ui/themed';
-import UserPhoto from '../components/UserPhoto';
-import InputName from '../components/InputName';
-import { useAuth } from '../provider/AuthContext';
+import UserPhoto from '../../components/UserPhoto';
+import InputName from '../../components/InputName';
+import { useAuth } from '../../provider/AuthContext';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
-import SelectBreed from '../components/SelectBreed';
-import { getUserData, updateUserData, UserProfile } from '../db/user';
+import SelectBreed from '../../components/SelectBreed';
+import { getUserData, updateUserData, UserProfile } from '../../db/user';
 
 const Profile: React.FC = () => {
   const { currentUser } = useAuth();
@@ -49,10 +49,11 @@ const Profile: React.FC = () => {
   }, [currentUser]);
 
   const submitHandle = async () => {
-    const user = {
+    const user: UserProfile = {
       name: currentUser.displayName || '',
       email: currentUser.email,
       photoURL: currentUser.photoURL,
+      uid: currentUser.uid,
       ...userProfile,
     };
     await updateUserData(currentUser.uid, user);
@@ -61,7 +62,7 @@ const Profile: React.FC = () => {
   return (
     <SafeAreaView>
       <FormControl>
-        <VStack alignItems="center" p="$6" gap="$4">
+        <VStack alignItems="center" p="$3" gap="$4">
           <UserPhoto user={currentUser} />
           <VStack alignItems="center">
             <InputName

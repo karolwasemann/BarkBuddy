@@ -1,12 +1,15 @@
 import { get, ref, set } from 'firebase/database';
 import { db } from '../firebaseConfig';
 export type UserProfile = {
+  uid?: string;
   name?: string;
   birthday?: Date;
   city?: string;
   desc?: string;
   breed?: string;
   gender?: 'femail' | 'male';
+  photoURL?: string | null;
+  email?: string | null;
 } | null;
 export const updateUserData = async (userId:string, userData:UserProfile) => {
   try {
@@ -46,7 +49,6 @@ export const getAllUsersData = async (): Promise<UserProfile[]> => {
         const userData = childSnapshot.val();
         userDataArray.push(userData);
       });
-      console.log('All users data:', userDataArray);
       return userDataArray;
     } else {
       console.log('No data available for any users');

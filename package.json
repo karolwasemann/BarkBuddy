@@ -20,6 +20,7 @@
     "@react-native-async-storage/async-storage": "1.21.0",
     "@react-native-community/datetimepicker": "7.6.1",
     "@react-navigation/native": "^6.0.2",
+    "@react-navigation/stack": "^6.3.29",
     "expo": "50",
     "expo-font": "~11.10.3",
     "expo-image-manipulator": "~11.8.0",

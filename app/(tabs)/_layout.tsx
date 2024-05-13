@@ -1,9 +1,8 @@
-import { View, Text } from 'react-native';
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Profile from '../profile';
-import Users from '../users';
+import Users from './users/users';
 import { AddIcon, Icon } from '@gluestack-ui/themed';
+import Profile from './profile';
 
 export default function Tabs() {
   const Tab = createBottomTabNavigator();

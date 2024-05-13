@@ -43,7 +43,7 @@ export const UserPhoto: React.FC<Props> = ({ user, onImageUpdate }) => {
   return (
     <View>
       <Box>
-        <Avatar size="2xl" borderRadius="$full" mb="$5">
+        <Avatar size="2xl" borderRadius="$full" mb="$1">
           {image ? (
             <AvatarImage source={{ uri: image }} alt="User image" />
           ) : (
