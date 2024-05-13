@@ -1,4 +1,4 @@
-import { get, ref, set } from 'firebase/database';
+import { get, ref, set, update } from 'firebase/database';
 import { db } from '../firebaseConfig';
 export type UserProfile = {
   uid?: string;
@@ -10,6 +10,7 @@ export type UserProfile = {
   gender?: 'femail' | 'male';
   photoURL?: string | null;
   email?: string | null;
+  friends?: string[];
 } | null;
 export const updateUserData = async (userId:string, userData:UserProfile) => {
   try {
@@ -57,5 +58,49 @@ export const getAllUsersData = async (): Promise<UserProfile[]> => {
   } catch (error) {
     console.error('Error getting all users data:', error);
     return [];
+  }
+};
+
+
+export const addFriend = async (userId: string, friendId: string): Promise<void> => {
+  const userFriendsRef = ref(db, `users/${userId}/friends`);
+  const friendFriendsRef = ref(db, `users/${friendId}/friends`);
+
+  try {
+    // Retrieve current user's friends list
+    const userFriendsSnapshot = await get(userFriendsRef);
+    let userFriends = userFriendsSnapshot.exists() ? userFriendsSnapshot.val() : [];
+
+    // Retrieve friend's friends list
+    const friendFriendsSnapshot = await get(friendFriendsRef);
+    let friendFriends = friendFriendsSnapshot.exists() ? friendFriendsSnapshot.val() : [];
+
+    // Check if already friends (optional step)
+    if (userFriends.includes(friendId) && friendFriends.includes(userId)) {
+      console.log('These users are already friends.');
+      return;
+    }
+
+    // Add friend ID to user's friends list
+    if (Array.isArray(userFriends)) {
+      userFriends.push(friendId);
+    } else {
+      userFriends = [friendId]; // Initialize as an array with the friendId
+    }
+
+    // Add user ID to friend's friends list
+    if (Array.isArray(friendFriends)) {
+      friendFriends.push(userId);
+    } else {
+      friendFriends = [userId]; // Initialize as an array with the userId
+    }
+
+    // Set the updated friends list in the database
+    await set(userFriendsRef, userFriends);
+    await set(friendFriendsRef, friendFriends);
+
+    console.log('Friend added successfully');
+  } catch (error) {
+    console.error('Error adding friend:', error);
   }
 };

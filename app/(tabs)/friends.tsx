@@ -1,10 +1,11 @@
 import { ScrollView, Box } from '@gluestack-ui/themed';
 import React, { useEffect, useState } from 'react';
-import { UserProfile, getAllUsersData } from '../../../db/user';
-import { useAuth } from '../../../provider/AuthContext';
-import UserCard from '../../../components/UserCard';
+import { useAuth } from '../../provider/AuthContext';
+import UserCard from '../../components/UserCard';
+import { UserProfile, getAllUsersData } from '../../db/user';
+import Friend from '../../components/Friend';
 
-function Users() {
+function Friends() {
   const { currentUser } = useAuth();
   const [users, setUsers] = useState<UserProfile[]>([]);
   useEffect(() => {
@@ -22,12 +23,12 @@ function Users() {
 
   return (
     <ScrollView>
-      <Box p="$2" flexDirection="row" flexWrap="wrap">
+      <Box p="$4" gap="$5">
         {users.map((user, i) => (
-          <UserCard user={user} key={`${user?.uid}-${i}`} />
+          <Friend user={user} key={`${user?.uid}-${i}`} />
         ))}
       </Box>
     </ScrollView>
   );
 }
-export default Users;
+export default Friends;

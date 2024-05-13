@@ -52,10 +52,17 @@ const Profile: React.FC = () => {
     const user: UserProfile = {
       name: currentUser.displayName || '',
       email: currentUser.email,
-      photoURL: currentUser.photoURL,
       uid: currentUser.uid,
+      friends: [],
       ...userProfile,
+      photoURL: currentUser.photoURL,
     };
+    console.log(
+      '🚀 ~ submitHandle ~ user: UserProfile.currentUser.photoURL:',
+      currentUser.photoURL,
+      user.photoURL
+    );
+
     await updateUserData(currentUser.uid, user);
   };
 
