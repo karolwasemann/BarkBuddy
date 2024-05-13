@@ -12,6 +12,7 @@ import Login from './login';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import UserDetails from './user';
 import Tabs from './(tabs)/_layout';
+import Chat from './chat';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -51,6 +52,8 @@ export default function RootLayout() {
 }
 export type RootStackParamList = {
   user: { userId: string };
+  chat: { conversationId: string; userId: string };
+  chats: undefined;
   page: undefined;
   login: undefined;
   signup: undefined;
@@ -85,6 +88,7 @@ function RootLayoutNav() {
             }}
           />
           <Stack.Screen name="user" component={UserDetails} />
+          <Stack.Screen name="chat" component={Chat} />
         </>
       ) : (
         <>

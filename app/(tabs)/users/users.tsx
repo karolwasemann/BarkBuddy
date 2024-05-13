@@ -1,8 +1,8 @@
 import { ScrollView, Box } from '@gluestack-ui/themed';
 import React, { useEffect, useState } from 'react';
-import { UserProfile, getAllUsersData } from '../../../db/user';
 import { useAuth } from '../../../provider/AuthContext';
 import UserCard from '../../../components/UserCard';
+import { UserProfile, getAllUsersData } from '../../../services/user';
 
 function Users() {
   const { currentUser } = useAuth();

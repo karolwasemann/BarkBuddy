@@ -2,25 +2,27 @@ import {
   Box,
   Button,
   ButtonText,
-  Card,
-  Heading,
-  VStack,
   View,
   Image,
   Text,
 } from '@gluestack-ui/themed';
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, useNavigation, useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { UserProfile, addFriend, getUserData } from '../db/user';
+import { UserProfile, addFriend, getUserData } from '../services/user';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useAuth } from '../provider/AuthContext';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from './_layout';
+type ChatNavigationProp = StackNavigationProp<RootStackParamList, 'chat'>;
 
 export default function UserDetails() {
   const { currentUser } = useAuth();
   if (!currentUser) {
     return null;
   }
+  const navigation = useNavigation<ChatNavigationProp>();
+
   const { userId } = useLocalSearchParams<{ userId: string }>();
   const [user, setUser] = useState<UserProfile | null>(null);
   useEffect(() => {
@@ -30,6 +32,13 @@ export default function UserDetails() {
     };
     fetchUser();
   }, [userId]);
+  const handlePress = () => {
+    const chatId = `${userId}-${currentUser?.uid}`.split('-').sort().join('-');
+    navigation.navigate('chat', {
+      conversationId: chatId,
+      userId: currentUser.uid,
+    });
+  };
   return (
     <View>
       <Image
@@ -65,6 +74,7 @@ export default function UserDetails() {
               size="md"
               color="$textLight600"
               $dark-color="$textDark400"
+              onPress={handlePress}
             >
               Chat
             </ButtonText>

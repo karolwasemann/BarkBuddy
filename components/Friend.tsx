@@ -9,7 +9,7 @@ import {
   Heading,
   Divider,
 } from '@gluestack-ui/themed';
-import { UserProfile } from '../db/user';
+import { UserProfile } from '../services/user';
 type FriendProps = {
   user: UserProfile;
 };

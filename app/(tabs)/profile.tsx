@@ -29,7 +29,7 @@ import InputName from '../../components/InputName';
 import { useAuth } from '../../provider/AuthContext';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import SelectBreed from '../../components/SelectBreed';
-import { getUserData, updateUserData, UserProfile } from '../../db/user';
+import { getUserData, updateUserData, UserProfile } from '../../services/user';
 
 const Profile: React.FC = () => {
   const { currentUser } = useAuth();

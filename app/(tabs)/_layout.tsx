@@ -6,6 +6,9 @@ import Profile from './profile';
 import Friends from './friends';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import Chats from './chats';
+
 export default function Tabs() {
   const Tab = createBottomTabNavigator();
 
@@ -40,6 +43,16 @@ export default function Tabs() {
           headerShown: false,
           tabBarIcon: () => (
             <FontAwesome5 name="user-friends" size={24} color="black" />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Chats"
+        component={Chats}
+        options={{
+          headerShown: false,
+          tabBarIcon: () => (
+            <FontAwesome name="wechat" size={24} color="black" />
           ),
         }}
       />

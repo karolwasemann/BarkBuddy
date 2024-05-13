@@ -16,7 +16,7 @@ import {
   ArrowRightIcon,
 } from '@gluestack-ui/themed';
 import React from 'react';
-import { UserProfile } from '../db/user';
+import { UserProfile } from '../services/user';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { Link, useNavigation } from 'expo-router';
 import { TouchableOpacity } from 'react-native';

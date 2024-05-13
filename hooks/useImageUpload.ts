@@ -6,7 +6,7 @@ import { storage } from '../firebaseConfig';
 import { updateProfile } from 'firebase/auth';
 import { User } from 'firebase/auth'; // Assuming User is imported correctly from firebase/auth
 import { resizeImage } from '../util/resizeImage';
-import { updateUserData } from '../db/user';
+import { updateUserData } from '../services/user';
 
 type UseImageUploadProps = {
   onUploadSuccess: (url: string) => void;

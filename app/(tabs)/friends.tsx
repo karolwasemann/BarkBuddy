@@ -1,8 +1,7 @@
 import { ScrollView, Box } from '@gluestack-ui/themed';
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../provider/AuthContext';
-import UserCard from '../../components/UserCard';
-import { UserProfile, getAllUsersData } from '../../db/user';
+import { UserProfile, getAllUsersData } from '../../services/user';
 import Friend from '../../components/Friend';
 
 function Friends() {
