@@ -3,14 +3,15 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StyleSheet, View } from 'react-native';
 import { Heading, Text, Button, ButtonText } from '@gluestack-ui/themed';
 import { useRouter } from 'expo-router';
+import theme from '../theme';
 
 export default function Page() {
   const router = useRouter();
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <Heading>Bark Buddy</Heading>
-        <Text>Find a Buddy and bark together</Text>
+        <Heading color={theme.colors.pri}>Bark Buddy</Heading>
+        <Text color={theme.colors.text}>Find a Buddy and bark together</Text>
         <Button
           onPress={() => {
             router.push('/login');

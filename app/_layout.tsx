@@ -13,6 +13,8 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import UserDetails from './user';
 import Tabs from './(tabs)/_layout';
 import Chat from './chat';
+import { ThemeProvider } from 'styled-components/native';
+import theme from '../theme';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -43,11 +45,13 @@ export default function RootLayout() {
   }
 
   return (
-    <GluestackUIProvider config={config}>
-      <AuthProvider>
-        <RootLayoutNav />
-      </AuthProvider>
-    </GluestackUIProvider>
+    <ThemeProvider theme={theme}>
+      <GluestackUIProvider config={config}>
+        <AuthProvider>
+          <RootLayoutNav />
+        </AuthProvider>
+      </GluestackUIProvider>
+    </ThemeProvider>
   );
 }
 export type RootStackParamList = {
