@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 import { firestore } from '../../firebaseConfig'; // Adjust the import according to your file structure
 import {
   collection,
@@ -9,24 +9,12 @@ import {
   Timestamp,
 } from 'firebase/firestore';
 import { useAuth } from '../../provider/AuthContext';
-import {
-  Avatar,
-  Text,
-  AvatarFallbackText,
-  AvatarImage,
-  HStack,
-  VStack,
-  Box,
-  SafeAreaView,
-  Divider,
-  Pressable,
-} from '@gluestack-ui/themed';
-import { UserProfile } from '../../services/user';
-import { SafeAreaFrameContext } from 'react-native-safe-area-context';
-import { useIsFocused, useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../_layout';
+import { SafeAreaView } from '@gluestack-ui/themed';
+
+import { useIsFocused } from '@react-navigation/native';
+
 import ChatItem from '../../components/ChatItem';
+import theme from '../../theme';
 
 export interface Chat {
   id: string;
@@ -57,23 +45,25 @@ const Chats = () => {
             ...doc.data(),
           } as Chat)
       );
-      console.log('🚀 ~ fetchChats ~ fetchedChats:', fetchedChats);
       setChats(fetchedChats);
     };
-    console.log('🚀 ~ fetchChats ~ userId:', userId);
-
     fetchChats();
   }, [isFocused, userId]);
 
   return (
-    <View>
+    <SafeAreaView style={styles.container}>
       <FlatList
         data={chats}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <ChatItem chat={item} />}
       />
-    </View>
+    </SafeAreaView>
   );
 };
-
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.colors.white,
+  },
+});
 export default Chats;

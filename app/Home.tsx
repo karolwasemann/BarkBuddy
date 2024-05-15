@@ -1,27 +1,37 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StyleSheet, View } from 'react-native';
-import { Heading, Text, Button, ButtonText } from '@gluestack-ui/themed';
+import { Heading, Text, Button, ButtonText, Image } from '@gluestack-ui/themed';
 import { useRouter } from 'expo-router';
 import theme from '../theme';
-
-export default function Page() {
+import Logo from '../assets/images/border.png';
+export default function Home() {
   const router = useRouter();
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <Heading color={theme.colors.pri}>Bark Buddy</Heading>
-        <Text color={theme.colors.text}>Find a Buddy and bark together</Text>
+        <Image
+          mt="$12"
+          size="2xl"
+          source={Logo}
+          backgroundColor={theme.colors.back}
+          alt="Bark Buddy Logo"
+        />
+        <Heading color={theme.colors.pri} alignSelf="center" pb="$2" size="2xl">
+          Bark Buddy
+        </Heading>
+        <Text color={theme.colors.text} alignSelf="center" size="xl">
+          Find a buddy and bark together!
+        </Text>
         <Button
           onPress={() => {
             router.push('/login');
           }}
-          style={{ marginTop: 40 }}
           size="md"
           variant="solid"
           action="primary"
-          isDisabled={false}
-          isFocusVisible={false}
+          backgroundColor={theme.colors.pri}
+          mt="$8"
         >
           <ButtonText>Login</ButtonText>
         </Button>
@@ -30,10 +40,9 @@ export default function Page() {
           size="md"
           variant="link"
           action="primary"
-          isDisabled={false}
-          isFocusVisible={false}
+          mt="$4"
         >
-          <ButtonText>Create Account</ButtonText>
+          <ButtonText color={theme.colors.accent}>Create Account</ButtonText>
         </Button>
       </View>
     </SafeAreaView>
@@ -43,6 +52,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    paddingTop: 180,
+    backgroundColor: theme.colors.back,
   },
 });

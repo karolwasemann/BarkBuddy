@@ -6,7 +6,7 @@ import {
   Image,
   Text,
 } from '@gluestack-ui/themed';
-import { useLocalSearchParams, useNavigation, useRouter } from 'expo-router';
+import { useLocalSearchParams, useNavigation } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { UserProfile, addFriend, getUserData } from '../services/user';
 import AntDesign from '@expo/vector-icons/AntDesign';
@@ -14,6 +14,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useAuth } from '../provider/AuthContext';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from './_layout';
+import { StyleSheet } from 'react-native';
+import theme from '../theme';
 type ChatNavigationProp = StackNavigationProp<RootStackParamList, 'chat'>;
 
 export default function UserDetails() {
@@ -37,10 +39,11 @@ export default function UserDetails() {
     navigation.navigate('chat', {
       conversationId: chatId,
       userId: currentUser.uid,
+      buddyName: 'Buddy',
     });
   };
   return (
-    <View>
+    <View style={styles.container}>
       <Image
         mb="$6"
         h={240}
@@ -64,21 +67,24 @@ export default function UserDetails() {
             px="$4"
             py="$2"
             variant="outline"
-            borderColor="$borderLight300"
-            $dark-borderColor="$backgroundDark600"
+            borderColor={theme.colors.pri}
             gap="$2"
             alignItems="center"
             size="lg"
+            onPress={handlePress}
           >
             <ButtonText
               size="md"
-              color="$textLight600"
+              color={theme.colors.text}
               $dark-color="$textDark400"
-              onPress={handlePress}
             >
               Chat
             </ButtonText>
-            <Ionicons name="chatbubbles-outline" size={24} color="black" />
+            <Ionicons
+              name="chatbubbles-outline"
+              size={24}
+              color={theme.colors.text}
+            />
           </Button>
           <Button
             px="$4"
@@ -88,12 +94,19 @@ export default function UserDetails() {
             size="lg"
             gap="$2"
             onPress={async () => await addFriend(currentUser?.uid, userId)}
+            backgroundColor={theme.colors.accent}
           >
             <ButtonText>Add Buddy</ButtonText>
-            <AntDesign name="adduser" size={24} color="white" />
+            <AntDesign name="adduser" size={24} color={theme.colors.white} />
           </Button>
         </Box>
       </Box>
     </View>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.colors.white,
+  },
+});

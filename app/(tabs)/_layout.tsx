@@ -1,30 +1,58 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Users from './users/users';
-import { AddIcon, Icon } from '@gluestack-ui/themed';
+import { AddIcon, Button, Icon } from '@gluestack-ui/themed';
 import Profile from './profile';
 import Friends from './friends';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Chats from './chats';
+import theme from '../../theme';
+import { useAuth } from '../../provider/AuthContext';
 
 export default function Tabs() {
   const Tab = createBottomTabNavigator();
+  const { currentUser, logout } = useAuth();
 
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={() => ({
+        tabBarStyle: {
+          backgroundColor: theme.colors.back,
+        },
+        tabBarActiveTintColor: theme.colors.pri,
+        tabBarInactiveTintColor: theme.colors.accent,
+        tabBarLabelStyle: {
+          fontSize: 10,
+        },
+      })}
+    >
       <Tab.Screen
-        name="My Profile"
+        name={currentUser?.displayName || 'Profile'}
         component={Profile}
         options={{
-          headerShown: false,
-          tabBarIcon: () => (
+          headerStyle: {
+            backgroundColor: theme.colors.back,
+          },
+          tabBarIcon: ({ focused }) => (
             <MaterialCommunityIcons
               name="face-man-profile"
               size={24}
-              color="black"
+              color={focused ? theme.colors.pri : theme.colors.accent}
             />
+          ),
+          headerRight: () => (
+            <Button
+              size="md"
+              variant="link"
+              action="primary"
+              justifyContent="center"
+              onPress={logout}
+              mr="$2"
+            >
+              <MaterialIcons name="logout" size={24} color={theme.colors.pri} />
+            </Button>
           ),
         }}
       />
@@ -33,7 +61,13 @@ export default function Tabs() {
         component={Users}
         options={{
           headerShown: false,
-          tabBarIcon: () => <FontAwesome5 name="dog" size={24} color="black" />,
+          tabBarIcon: ({ focused }) => (
+            <FontAwesome5
+              name="dog"
+              size={24}
+              color={focused ? theme.colors.pri : theme.colors.accent}
+            />
+          ),
         }}
       />
       <Tab.Screen
@@ -41,8 +75,12 @@ export default function Tabs() {
         component={Friends}
         options={{
           headerShown: false,
-          tabBarIcon: () => (
-            <FontAwesome5 name="user-friends" size={24} color="black" />
+          tabBarIcon: ({ focused }) => (
+            <FontAwesome5
+              name="user-friends"
+              size={24}
+              color={focused ? theme.colors.pri : theme.colors.accent}
+            />
           ),
         }}
       />
@@ -51,8 +89,12 @@ export default function Tabs() {
         component={Chats}
         options={{
           headerShown: false,
-          tabBarIcon: () => (
-            <FontAwesome name="wechat" size={24} color="black" />
+          tabBarIcon: ({ focused }) => (
+            <FontAwesome
+              name="wechat"
+              size={24}
+              color={focused ? theme.colors.pri : theme.colors.accent}
+            />
           ),
         }}
       />

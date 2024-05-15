@@ -22,6 +22,7 @@ import {
   KeyboardAvoidingView,
 } from '@gluestack-ui/themed';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import theme from '../theme';
 
 type Message = {
   id: string;
@@ -88,11 +89,11 @@ const Chat = () => {
     <Box
       p="$4"
       mb="$2"
-      backgroundColor="lightblue"
       borderRadius="$md"
       style={{
         padding: 10,
-        backgroundColor: item.senderId === userId ? 'lightblue' : 'lightgrey',
+        backgroundColor:
+          item.senderId === userId ? 'lightblue' : theme.colors.sec,
         alignSelf: item.senderId === userId ? 'flex-end' : 'flex-start',
         borderRadius: 10,
         margin: 5,
@@ -116,21 +117,24 @@ const Chat = () => {
         contentContainerStyle={styles.messageContainer}
       />
       <HStack
-        p="$4"
-        backgroundColor="$white"
-        borderTopColor="$grey"
+        pb="$8"
+        px="$5"
+        pt="$2"
+        backgroundColor={theme.colors.back}
+        borderTopColor={theme.colors.light}
         borderTopWidth={1}
         gap="$2"
       >
-        <Input flexGrow={1}>
+        <Input flexGrow={1} borderColor={theme.colors.accent}>
           <InputField
+            color={theme.colors.text}
             placeholder="Type a message..."
             value={newMessage}
             onChangeText={setNewMessage}
           />
         </Input>
-        <Button onPress={handleSend}>
-          <FontAwesome name="send-o" size={24} color="black" />
+        <Button onPress={handleSend} backgroundColor={theme.colors.sec}>
+          <FontAwesome name="send-o" size={24} color={theme.colors.pri} />
         </Button>
       </HStack>
     </KeyboardAvoidingView>
@@ -140,16 +144,11 @@ const Chat = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: theme.colors.white,
   },
   messageContainer: {
     flexGrow: 1,
     justifyContent: 'flex-end',
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ddd',
-    padding: 10,
-    borderRadius: 5,
   },
 });
 

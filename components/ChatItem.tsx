@@ -1,4 +1,9 @@
-import { View, Pressable, SafeAreaView, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  Pressable,
+  SafeAreaView,
+  TouchableOpacity,
+} from 'react-native';
 import React, { useEffect, useState } from 'react';
 import {
   Text,
@@ -17,6 +22,7 @@ import { Chat } from '../app/(tabs)/chats';
 import formatDate from '../util/dateFormat';
 import { useAuth } from '../provider/AuthContext';
 import { UserProfile, getUserData } from '../services/user';
+import theme from '../theme';
 
 type ChatNavigationProp = StackNavigationProp<RootStackParamList, 'chat'>;
 type ChatItemProps = {
@@ -36,17 +42,17 @@ export default function ChatItem({ chat }: ChatItemProps) {
   }, [chat]);
   const handlePress = (id: string[]) => {
     const chatId = id.sort().join('-');
-    console.log('🚀 ~ handlePress ~ chatId:', chatId);
     navigation.navigate('chat', {
       conversationId: chatId,
       userId: currentUser?.uid || '',
+      buddyName: buddy?.name || '',
     });
   };
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <TouchableOpacity>
         <Pressable onPress={() => handlePress(chat.participants)}>
-          <HStack p="$3" gap="$6" backgroundColor="$white" width={'$full'}>
+          <HStack p="$3" gap="$6">
             <Avatar size="lg">
               <AvatarFallbackText>{buddy?.name}</AvatarFallbackText>
               <AvatarImage
@@ -57,18 +63,31 @@ export default function ChatItem({ chat }: ChatItemProps) {
               />
             </Avatar>
             <VStack flexGrow={1} p="$2">
-              <Box flexDirection="row" justifyContent="space-between">
-                <Text size="md">{buddy?.name}</Text>
-                <Text size="sm">
+              <Box pb="$2" flexDirection="row" justifyContent="space-between">
+                <Text size="md" color={theme.colors.pri}>
+                  {buddy?.name}
+                </Text>
+                <Text size="sm" color={theme.colors.text}>
                   {formatDate(chat.lastMessageTime.toDate())}
                 </Text>
               </Box>
-              <Text size="sm">{chat.lastMessage}</Text>
+              <Text size="sm" color={theme.colors.text}>
+                {chat.lastMessage}
+              </Text>
             </VStack>
           </HStack>
-          <Divider mt="$0.5" mb="$1.5" />
+          <Divider mt="$0.5" mb="$1.5" style={styles.divider} />
         </Pressable>
       </TouchableOpacity>
     </SafeAreaView>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: theme.colors.white,
+  },
+  divider: {
+    backgroundColor: theme.colors.light,
+    margin: 20,
+  },
+});

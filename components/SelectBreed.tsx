@@ -20,6 +20,7 @@ type SelectBreedProps = {
   defaultValue: string;
 };
 import breeds from '../data/breeds.json';
+import theme from '../theme';
 export default function SelectBreed({
   onSelectBreed,
   defaultValue,
@@ -30,7 +31,12 @@ export default function SelectBreed({
         selectedValue={defaultValue}
         onValueChange={(e) => onSelectBreed(e)}
       >
-        <SelectTrigger variant="outline" size="md" pr="$3">
+        <SelectTrigger
+          variant="outline"
+          size="md"
+          pr="$3"
+          borderColor={theme.colors.accent}
+        >
           <SelectInput placeholder="Select Dog Breed" />
           <SelectIcon>
             <Icon as={ChevronDownIcon} />

@@ -1,4 +1,3 @@
-import { View, Text } from 'react-native';
 import React from 'react';
 import {
   FormControlHelper,
@@ -6,6 +5,7 @@ import {
   Input,
   InputField,
 } from '@gluestack-ui/themed';
+import theme from '../theme';
 type InputeNameProps = {
   userName: string;
   setDisplayName: (text: string) => void;
@@ -13,7 +13,7 @@ type InputeNameProps = {
 const InputName = ({ userName, setDisplayName }: InputeNameProps) => {
   return (
     <>
-      <Input>
+      <Input borderColor={theme.colors.accent}>
         <InputField
           placeholder="Your funny nickname"
           defaultValue={userName}

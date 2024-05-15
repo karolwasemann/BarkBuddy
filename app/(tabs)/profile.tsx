@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, SafeAreaView } from 'react-native';
+import { Alert, SafeAreaView, StyleSheet } from 'react-native';
 import {
   AddIcon,
   Box,
@@ -30,6 +30,7 @@ import { useAuth } from '../../provider/AuthContext';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import SelectBreed from '../../components/SelectBreed';
 import { getUserData, updateUserData, UserProfile } from '../../services/user';
+import theme from '../../theme';
 
 const Profile: React.FC = () => {
   const { currentUser } = useAuth();
@@ -57,17 +58,11 @@ const Profile: React.FC = () => {
       ...userProfile,
       photoURL: currentUser.photoURL,
     };
-    console.log(
-      '🚀 ~ submitHandle ~ user: UserProfile.currentUser.photoURL:',
-      currentUser.photoURL,
-      user.photoURL
-    );
-
     await updateUserData(currentUser.uid, user);
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <FormControl>
         <VStack alignItems="center" p="$3" gap="$4">
           <UserPhoto user={currentUser} />
@@ -94,7 +89,7 @@ const Profile: React.FC = () => {
               }}
             />
           </HStack>
-          <Input>
+          <Input borderColor={theme.colors.accent}>
             <InputField
               placeholder="City"
               defaultValue={userProfile?.city || ''}
@@ -103,7 +98,7 @@ const Profile: React.FC = () => {
               }
             />
           </Input>
-          <Textarea size="md" w="$full">
+          <Textarea size="md" w="$full" borderColor={theme.colors.accent}>
             <TextareaInput
               placeholder="Write something about yourself and your dog"
               defaultValue={userProfile?.desc || ''}
@@ -145,9 +140,9 @@ const Profile: React.FC = () => {
           <Button
             size="md"
             variant="solid"
-            action="secondary"
             w="$full"
             onPress={submitHandle}
+            backgroundColor={theme.colors.accent}
           >
             <ButtonText>Save</ButtonText>
           </Button>
@@ -156,5 +151,11 @@ const Profile: React.FC = () => {
     </SafeAreaView>
   );
 };
-
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: theme.colors.white,
+  },
+});
 export default Profile;

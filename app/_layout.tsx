@@ -6,15 +6,16 @@ import { useEffect } from 'react';
 import { Button, GluestackUIProvider } from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/config'; // Optional if you want to use default theme
 import { AuthProvider, useAuth } from '../provider/AuthContext';
-import Page from './page';
+import Page from './Home';
 import Signup from './signup';
-import Login from './login';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import UserDetails from './user';
 import Tabs from './(tabs)/_layout';
 import Chat from './chat';
 import { ThemeProvider } from 'styled-components/native';
 import theme from '../theme';
+import Home from './Home';
+import LoginScreen from './login';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -56,9 +57,9 @@ export default function RootLayout() {
 }
 export type RootStackParamList = {
   user: { userId: string };
-  chat: { conversationId: string; userId: string };
+  chat: { conversationId: string; userId: string; buddyName: string };
   chats: undefined;
-  page: undefined;
+  Home: undefined;
   login: undefined;
   signup: undefined;
   '(tabs)': undefined;
@@ -77,29 +78,63 @@ function RootLayoutNav() {
             component={Tabs}
             options={{
               title: 'Bark Buddy',
-              headerRight: () => (
-                <Button
-                  size="md"
-                  variant="link"
-                  action="primary"
-                  gap="$1"
-                  justifyContent="center"
-                  onPress={logout}
-                >
-                  <MaterialIcons name="logout" size={24} color="black" />
-                </Button>
-              ),
+              headerStyle: {
+                backgroundColor: theme.colors.back,
+              },
+              headerShown: false,
             }}
           />
-          <Stack.Screen name="user" component={UserDetails} />
-          <Stack.Screen name="chat" component={Chat} />
+          <Stack.Screen
+            name="user"
+            component={UserDetails}
+            options={{
+              title: 'Your Buddy',
+              headerStyle: {
+                backgroundColor: theme.colors.back,
+              },
+            }}
+          />
+          <Stack.Screen
+            name="chat"
+            component={Chat}
+            options={({ route }) => ({
+              title: route.params.buddyName,
+              headerStyle: {
+                backgroundColor: theme.colors.back,
+              },
+            })}
+          />
         </>
       ) : (
         <>
-          <Stack.Screen name="page" component={Page} />
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{
+              headerShown: false,
+            }}
+          />
           <Stack.Group screenOptions={{ presentation: 'modal' }}>
-            <Stack.Screen name="login" component={Login} />
-            <Stack.Screen name="signup" component={Signup} />
+            <Stack.Screen
+              name="login"
+              component={LoginScreen}
+              options={{
+                title: 'Login',
+                headerStyle: {
+                  backgroundColor: theme.colors.back,
+                },
+              }}
+            />
+            <Stack.Screen
+              name="signup"
+              component={Signup}
+              options={{
+                title: 'Creat Account',
+                headerStyle: {
+                  backgroundColor: theme.colors.back,
+                },
+              }}
+            />
           </Stack.Group>
         </>
       )}

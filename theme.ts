@@ -2,14 +2,15 @@
 const theme = {
      colors: {
        pri: "#06060a",
-       sec: "#e4e2f2",
+       sec: "#BBBBC4",
        accent: "#585862",
-       back: "#BBBBC4",
+       back: "#e4e2f2",
        text: "#3A3A45",
-       light: "#f43f5e",
+       light: "#7B7B85",
        danger: '#dc3545',
        warning: '#ffc107',
-       info: '#17a2b8'
+       info: '#7B7B85',
+       white:"#e7e6f0"
      },
      fonts: {
        body: 'system-ui, sans-serif',

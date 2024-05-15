@@ -14,6 +14,7 @@ import { UserProfile } from '../services/user';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../app/_layout';
 import { useNavigation } from 'expo-router';
+import theme from '../theme';
 type FriendProps = {
   user: UserProfile;
 };
@@ -38,10 +39,12 @@ export default function Friend({ user }: FriendProps) {
             />
           </Avatar>
           <VStack>
-            <Heading size="md" mb="$1" bold>
+            <Heading size="md" mb="$1" bold color={theme.colors.pri}>
               {user?.name}
             </Heading>
-            <Heading size="sm">{user?.city}</Heading>
+            <Heading size="sm" color={theme.colors.text}>
+              {user?.city}
+            </Heading>
           </VStack>
         </Box>
       </Pressable>
