@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Alert, SafeAreaView, StyleSheet } from 'react-native';
+
 import {
-  AddIcon,
-  Box,
   Button,
-  ButtonIcon,
   ButtonText,
   CircleIcon,
   FormControl,
   FormControlLabel,
   FormControlLabelText,
   HStack,
-  Heading,
   Input,
   InputField,
   Radio,
@@ -19,15 +16,16 @@ import {
   RadioIcon,
   RadioIndicator,
   RadioLabel,
-  Text,
   Textarea,
   TextareaInput,
+  Toast,
+  ToastTitle,
   VStack,
+  useToast,
 } from '@gluestack-ui/themed';
 import UserPhoto from '../../components/UserPhoto';
 import InputName from '../../components/InputName';
 import { useAuth } from '../../provider/AuthContext';
-import RNDateTimePicker from '@react-native-community/datetimepicker';
 import SelectBreed from '../../components/SelectBreed';
 import { getUserData, updateUserData, UserProfile } from '../../services/user';
 import theme from '../../theme';
@@ -38,6 +36,9 @@ const Profile: React.FC = () => {
     Alert.alert('You need to be logged in to view this page');
     return null;
   }
+
+  const toast = useToast();
+
   const [userProfile, setUserProfile] = useState<UserProfile>(null);
 
   useEffect(() => {
@@ -59,8 +60,16 @@ const Profile: React.FC = () => {
       photoURL: currentUser.photoURL,
     };
     await updateUserData(currentUser.uid, user);
-  };
+    toast.show({
+      placement: 'top',
 
+      render: () => (
+        <Toast action="success">
+          <ToastTitle>Profile updated</ToastTitle>
+        </Toast>
+      ),
+    });
+  };
   return (
     <SafeAreaView style={styles.container}>
       <FormControl>
@@ -74,21 +83,7 @@ const Profile: React.FC = () => {
               }
             />
           </VStack>
-          <HStack mt="$2" gap="$8">
-            <FormControlLabel>
-              <FormControlLabelText>Birthday</FormControlLabelText>
-            </FormControlLabel>
-            <RNDateTimePicker
-              value={userProfile?.birthday || new Date()}
-              onChange={(e) => {
-                const date = new Date(e.nativeEvent.timestamp);
-                setUserProfile({
-                  ...userProfile,
-                  birthday: date,
-                });
-              }}
-            />
-          </HStack>
+
           <Input borderColor={theme.colors.accent}>
             <InputField
               placeholder="City"

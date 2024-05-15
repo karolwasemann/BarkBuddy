@@ -21,7 +21,8 @@
         "NSPhotoLibraryUsageDescription": "This app requires access to the photo library to upload images.",
         "NSCameraUsageDescription": "This app requires access to the camera to take photos.",
         "NSMicrophoneUsageDescription": "This app requires access to the microphone to record video."
-      }
+      },
+      "bundleIdentifier": "com.kwasemann.BarkBuddy"
     },
     "android": {
       "adaptiveIcon": {
@@ -32,7 +33,8 @@
         "CAMERA",
         "READ_EXTERNAL_STORAGE",
         "WRITE_EXTERNAL_STORAGE"
-      ]
+      ],
+      "package": "com.kwasemann.BarkBuddy"
     },
     "web": {
       "bundler": "metro",
@@ -45,6 +47,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "3abf5a15-a2ec-4809-a4b3-b5a1ffc50243"
+      }
     }
   }
 }

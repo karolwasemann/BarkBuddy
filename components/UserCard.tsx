@@ -38,13 +38,13 @@ export default function UserCard({ user }: UserCardProps) {
     <Card p="$0" borderRadius="$lg" m="$2" width={'45%'}>
       <TouchableOpacity onPress={handlePress}>
         <Image
+          style={{ width: '100%' }}
           source={{
             uri: user?.photoURL || '',
           }}
           alt="User photo"
-          width={'$full'}
           height={130}
-          borderRadius="$lg"
+          borderRadius={10}
           resizeMode="cover"
         />
         <VStack py="$3" px="$2">

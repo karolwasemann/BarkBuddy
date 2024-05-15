@@ -53,15 +53,17 @@ export default function ChatItem({ chat }: ChatItemProps) {
       <TouchableOpacity>
         <Pressable onPress={() => handlePress(chat.participants)}>
           <HStack p="$3" gap="$6">
-            <Avatar size="lg">
-              <AvatarFallbackText>{buddy?.name}</AvatarFallbackText>
-              <AvatarImage
-                source={{
-                  uri: buddy?.photoURL || '',
-                }}
-                alt="Avatar user"
-              />
-            </Avatar>
+            {buddy?.photoURL && (
+              <Avatar size="lg">
+                <AvatarFallbackText>{buddy?.name}</AvatarFallbackText>
+                <AvatarImage
+                  source={{
+                    uri: buddy?.photoURL || '',
+                  }}
+                  alt="Avatar user"
+                />
+              </Avatar>
+            )}
             <VStack flexGrow={1} p="$2">
               <Box pb="$2" flexDirection="row" justifyContent="space-between">
                 <Text size="md" color={theme.colors.pri}>
@@ -84,6 +86,7 @@ export default function ChatItem({ chat }: ChatItemProps) {
 }
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 50,
     backgroundColor: theme.colors.white,
   },
   divider: {

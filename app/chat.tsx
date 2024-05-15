@@ -44,6 +44,7 @@ const Chat = () => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
+        if (!conversationId) return console.error('Conversation ID not found');
         const fetchedMessages = await readMessages(conversationId);
         const mappedMessages = fetchedMessages.map((msg) => ({
           id: msg.id,
@@ -62,12 +63,13 @@ const Chat = () => {
 
   const handleSend = async () => {
     if (newMessage.trim()) {
+      if (!userId || !conversationId) return console.error('User ID not found');
       await sendMessage(conversationId, userId, newMessage);
       setMessages((prevMessages) => [
         ...prevMessages,
         {
           id: new Date().toISOString(),
-          senderId: userId,
+          senderId: userId || '', // Provide a default value for userId
           text: newMessage,
           timestamp: new Date(),
         },
@@ -107,7 +109,7 @@ const Chat = () => {
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 80}
     >
       <FlatList
         ref={flatListRef}

@@ -42,6 +42,7 @@ function Friends() {
 }
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 50,
     flex: 1,
     backgroundColor: theme.colors.white,
   },

@@ -29,6 +29,7 @@ export default function UserDetails() {
   const [user, setUser] = useState<UserProfile | null>(null);
   useEffect(() => {
     const fetchUser = async () => {
+      if (!userId) return;
       const userData = await getUserData(userId);
       setUser(userData);
     };
@@ -44,16 +45,18 @@ export default function UserDetails() {
   };
   return (
     <View style={styles.container}>
-      <Image
-        mb="$6"
-        h={240}
-        width="$full"
-        borderRadius="$md"
-        source={{
-          uri: user?.photoURL || '',
-        }}
-        alt="User Photo"
-      />
+      {user?.photoURL && (
+        <Image
+          style={{ width: '100%', height: 240 }}
+          mb="$6"
+          source={{
+            uri: user?.photoURL || '',
+          }}
+          borderBottomRightRadius={5}
+          borderBottomLeftRadius={5}
+          alt="User Photo"
+        />
+      )}
       <Box p="$2" gap="$4">
         <Text fontSize="$lg" bold>
           {user?.name}
@@ -93,7 +96,9 @@ export default function UserDetails() {
             mb="$3"
             size="lg"
             gap="$2"
-            onPress={async () => await addFriend(currentUser?.uid, userId)}
+            onPress={async () =>
+              await addFriend(currentUser?.uid, userId || '')
+            }
             backgroundColor={theme.colors.accent}
           >
             <ButtonText>Add Buddy</ButtonText>
