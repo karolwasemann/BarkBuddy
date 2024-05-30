@@ -5,6 +5,7 @@ import {
   View,
   Image,
   Text,
+  Heading,
 } from '@gluestack-ui/themed';
 import { useLocalSearchParams, useNavigation } from 'expo-router';
 import React, { useEffect, useState } from 'react';
@@ -45,7 +46,7 @@ export default function UserDetails() {
   };
   return (
     <View style={styles.container}>
-      {user?.photoURL && (
+      {user?.photoURL ? (
         <Image
           style={{ width: '100%', height: 240 }}
           mb="$6"
@@ -56,6 +57,16 @@ export default function UserDetails() {
           borderBottomLeftRadius={5}
           alt="User Photo"
         />
+      ) : (
+        <Box
+          style={{ width: '100%', height: 240 }}
+          borderBottomRightRadius={5}
+          borderBottomLeftRadius={5}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Heading>{user?.name}</Heading>
+        </Box>
       )}
       <Box p="$2" gap="$4">
         <Text fontSize="$lg" bold>

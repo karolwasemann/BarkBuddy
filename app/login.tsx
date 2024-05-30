@@ -45,7 +45,7 @@ export default function LoginScreen() {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
       alert('Failed to log in');
-      console.error(error);
+      console.error('Erri', error);
     } finally {
       setIsLoading(false);
     }

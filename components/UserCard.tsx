@@ -29,6 +29,7 @@ type UserCardProps = {
 type UserNavigationProp = StackNavigationProp<RootStackParamList, 'user'>;
 
 export default function UserCard({ user }: UserCardProps) {
+  console.log('🚀 ~ UserCard ~ user:', user);
   const navigation = useNavigation<UserNavigationProp>();
 
   const handlePress = () => {
@@ -37,19 +38,31 @@ export default function UserCard({ user }: UserCardProps) {
   return (
     <Card p="$0" borderRadius="$lg" m="$2" width={'45%'}>
       <TouchableOpacity onPress={handlePress}>
-        <Image
-          style={{ width: '100%' }}
-          source={{
-            uri: user?.photoURL || '',
-          }}
-          alt="User photo"
-          height={130}
-          borderRadius={10}
-          resizeMode="cover"
-        />
+        {user?.photoURL ? (
+          <Image
+            style={{ width: '100%' }}
+            source={{
+              uri: user?.photoURL || './assets/avatar.png',
+            }}
+            alt="User photo"
+            height={130}
+            borderRadius={10}
+            resizeMode="cover"
+          />
+        ) : (
+          <Box
+            justifyContent="center"
+            alignItems="center"
+            style={{ width: '100%' }}
+            height={130}
+            borderRadius={10}
+          >
+            <Text>{user?.name}</Text>
+          </Box>
+        )}
         <VStack py="$3" px="$2">
           <Heading size="md" color={theme.colors.pri}>
-            {user?.name}
+            {user?.name} & {user?.dogName}
           </Heading>
           <Text size="md">{user?.breed}</Text>
           <HStack justifyContent="space-between" alignItems="center">

@@ -1,5 +1,6 @@
 import { get, ref, set, update } from 'firebase/database';
 import { db } from '../firebaseConfig';
+
 export type UserProfile = {
   uid?: string;
   name?: string;
@@ -11,8 +12,9 @@ export type UserProfile = {
   photoURL?: string | null;
   email?: string | null;
   friends?: string[];
+  dogName?: string;
 } | null;
-export const updateUserData = async (userId:string, userData:UserProfile) => {
+export const updateUserData = async (userId: string, userData: UserProfile) => {
   try {
     await set(ref(db, 'users/' + userId), userData);
     console.log('User data added to Realtime Database');
@@ -21,23 +23,23 @@ export const updateUserData = async (userId:string, userData:UserProfile) => {
   }
 };
 
-export const getUserData = async (userId:string):Promise<UserProfile> => {
-      try {
-          const userRef = ref(db, `users/${userId}`);
-          const snapshot = await get(userRef);
-          
-          if (snapshot.exists()) {
-            const userData = snapshot.val();
-            return userData;
-          } else {
-            console.error('No data available for the user');
-            return null;
-          }
-        } catch (error) {
-          console.error('Error getting user data:', error);
-          return null;
-        }
-}
+export const getUserData = async (userId: string): Promise<UserProfile> => {
+  try {
+    const userRef = ref(db, `users/${userId}`);
+    const snapshot = await get(userRef);
+
+    if (snapshot.exists()) {
+      const userData = snapshot.val();
+      return userData;
+    } else {
+      console.error('No data available for the user');
+      return null;
+    }
+  } catch (error) {
+    console.error('Error getting user data:', error);
+    return null;
+  }
+};
 
 export const getAllUsersData = async (): Promise<UserProfile[]> => {
   try {
@@ -61,19 +63,25 @@ export const getAllUsersData = async (): Promise<UserProfile[]> => {
   }
 };
 
-
-export const addFriend = async (userId: string, friendId: string): Promise<void> => {
+export const addFriend = async (
+  userId: string,
+  friendId: string
+): Promise<void> => {
   const userFriendsRef = ref(db, `users/${userId}/friends`);
   const friendFriendsRef = ref(db, `users/${friendId}/friends`);
 
   try {
     // Retrieve current user's friends list
     const userFriendsSnapshot = await get(userFriendsRef);
-    let userFriends = userFriendsSnapshot.exists() ? userFriendsSnapshot.val() : [];
+    let userFriends = userFriendsSnapshot.exists()
+      ? userFriendsSnapshot.val()
+      : [];
 
     // Retrieve friend's friends list
     const friendFriendsSnapshot = await get(friendFriendsRef);
-    let friendFriends = friendFriendsSnapshot.exists() ? friendFriendsSnapshot.val() : [];
+    let friendFriends = friendFriendsSnapshot.exists()
+      ? friendFriendsSnapshot.val()
+      : [];
 
     // Check if already friends (optional step)
     if (userFriends.includes(friendId) && friendFriends.includes(userId)) {

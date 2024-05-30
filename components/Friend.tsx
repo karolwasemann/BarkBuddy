@@ -25,15 +25,19 @@ export default function Friend({ user }: FriendProps) {
   const handlePress = () => {
     navigation.navigate('user', { userId: user?.uid || '' });
   };
+
+  if (!user) return <Text>Loading</Text>;
   return (
     <>
       <Pressable onPress={handlePress}>
         <Box flexDirection="row">
           <Avatar size="lg" mr="$3">
-            <AvatarFallbackText fontFamily="$heading">RR</AvatarFallbackText>
+            <AvatarFallbackText fontFamily="$heading">
+              {user?.name}
+            </AvatarFallbackText>
             <AvatarImage
               source={{
-                uri: user?.photoURL || '',
+                uri: user?.photoURL || './assets/avatar.png',
               }}
               alt="User Avatar"
             />

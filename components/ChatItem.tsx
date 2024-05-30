@@ -48,22 +48,24 @@ export default function ChatItem({ chat }: ChatItemProps) {
       buddyName: buddy?.name || '',
     });
   };
+
+  if (!buddy) return <Text>Loading</Text>;
   return (
     <SafeAreaView style={styles.container}>
       <TouchableOpacity>
         <Pressable onPress={() => handlePress(chat.participants)}>
           <HStack p="$3" gap="$6">
-            {buddy?.photoURL && (
-              <Avatar size="lg">
-                <AvatarFallbackText>{buddy?.name}</AvatarFallbackText>
-                <AvatarImage
-                  source={{
-                    uri: buddy?.photoURL || '',
-                  }}
-                  alt="Avatar user"
-                />
-              </Avatar>
-            )}
+            {/* {buddy?.photoURL && ( */}
+            <Avatar size="lg">
+              <AvatarFallbackText>{buddy?.name}</AvatarFallbackText>
+              <AvatarImage
+                source={{
+                  uri: buddy?.photoURL || './assets/avatar.png',
+                }}
+                alt="Avatar user"
+              />
+            </Avatar>
+            {/* )} */}
             <VStack flexGrow={1} p="$2">
               <Box pb="$2" flexDirection="row" justifyContent="space-between">
                 <Text size="md" color={theme.colors.pri}>

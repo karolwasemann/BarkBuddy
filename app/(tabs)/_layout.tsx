@@ -29,9 +29,10 @@ export default function Tabs() {
       })}
     >
       <Tab.Screen
-        name={currentUser?.displayName || 'Profile'}
+        name={'Profile'}
         component={Profile}
         options={{
+          title: currentUser?.displayName || 'Profile',
           headerStyle: {
             backgroundColor: theme.colors.back,
           },

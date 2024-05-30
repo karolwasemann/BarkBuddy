@@ -44,6 +44,7 @@ const Profile: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getUserData(currentUser.uid);
+      console.log('🚀 ~ fetchData ~ data:', data);
       setUserProfile(data);
     };
 
@@ -56,8 +57,8 @@ const Profile: React.FC = () => {
       email: currentUser.email,
       uid: currentUser.uid,
       friends: [],
-      ...userProfile,
       photoURL: currentUser.photoURL,
+      ...userProfile,
     };
     await updateUserData(currentUser.uid, user);
     toast.show({
@@ -132,6 +133,15 @@ const Profile: React.FC = () => {
             defaultValue={userProfile?.breed || ''}
             onSelectBreed={(e) => setUserProfile({ ...userProfile, breed: e })}
           />
+          <Input borderColor={theme.colors.accent}>
+            <InputField
+              placeholder="Dog's name"
+              defaultValue={userProfile?.dogName || ''}
+              onChangeText={(text) =>
+                setUserProfile({ ...userProfile, dogName: text })
+              }
+            />
+          </Input>
           <Button
             size="md"
             variant="solid"
